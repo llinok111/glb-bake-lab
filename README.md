@@ -46,7 +46,9 @@ The page loads both GLBs with `GLTFLoader`, shows the source (24 nodes) and the 
 | 144k triangles, 12k instances | cold 266.44 ms, median 122.95 ms, p95 136.23 ms, RSD 8.79% (7 samples, 2 warmups) | `bench/result.json` |
 | same work, naive baseline | median 119.92 ms → `0.98×` | `baseline/naive.mjs` |
 
-RSD is 8.79%; the residual spread is GC on ~11 MB of per-sample output arrays plus shared-CPU scheduling, not an algorithmic effect. The baseline is not slower than the core build: per-vertex objects are well optimized by V8, so **the honest result is throughput parity**, and the value here is correctness/determinism, not speed.
+RSD is 8.79%; the residual spread is GC on ~11 MB of per-sample output arrays plus shared-CPU scheduling, not an algorithmic effect.
+
+**Timing is host-specific, and the table above is one committed run.** An independent read-only verifier re-ran `bench/bench.mjs` twice on a fresh clone: cold **161.65 / 177.22 ms**, median **113.09 / 113.21 ms**, p95 **125.48 / 121.39 ms**, RSD **4.73% / 4.10%**, baseline ratio **1.12× / 1.03×** — i.e. on that run the core was *faster* than the baseline, the opposite of the committed 0.98×. All correctness, SHA, draw-call and bounds numbers reproduced exactly. Treat the latency column as "measured once here, ±10–15% across hosts"; the committed `bench/result.json` is the run whose numbers the README quotes verbatim. The baseline is not slower than the core build: per-vertex objects are well optimized by V8, so **the honest result is throughput parity**, and the value here is correctness/determinism, not speed.
 
 ## Known limitations
 

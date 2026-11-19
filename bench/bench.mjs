@@ -1,4 +1,4 @@
-// G5 benchmark: 1 warmup + 5 timed samples, cold start recorded separately.
+// G5 benchmark: cold start + 2 warmups + 7 timed samples.
 import { performance } from "node:perf_hooks";
 import { writeFileSync } from "node:fs";
 import { bakeScene, sceneStats } from "../src/core.mjs";

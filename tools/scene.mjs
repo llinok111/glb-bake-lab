@@ -1,5 +1,5 @@
 // Deterministic synthetic scene builder shared by the generator, verifier and bench.
-// One 12-triangle flat-shaded box, instanced 24 times through a 4-level node graph.
+// One 12-triangle flat-shaded box, instanced 24 times through a root -> arm -> leaf graph.
 
 export function boxMesh(size = 1.5) {
   const h = size / 2;
