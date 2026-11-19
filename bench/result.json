@@ -1,0 +1,37 @@
+{
+  "dataset": {
+    "instances": 12000,
+    "triangles": 144000,
+    "vertices": 288000,
+    "sourceBinBytes": 648
+  },
+  "unit": "ms",
+  "coldStart": 266.44,
+  "samples": [
+    105.65,
+    119.41,
+    122.95,
+    136.23,
+    116.47,
+    135.94,
+    135.66
+  ],
+  "warmup": 2,
+  "min": 105.65,
+  "median": 122.95,
+  "p95": 136.23,
+  "stddev": 10.96,
+  "rsdPercent": 8.79,
+  "baseline": {
+    "name": "baseline/naive.mjs (per-vertex objects + Gauss-Jordan per instance)",
+    "runs": [
+      117.27,
+      119.92,
+      124.86
+    ],
+    "median": 119.92,
+    "speedup": 0.98
+  },
+  "normalConsistency": "same triangle and vertex count",
+  "generatedAt": "2026-11-19T22:26:33.511Z"
+}

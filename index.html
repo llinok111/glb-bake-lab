@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>glb-bake-lab — nested glTF → one baked draw</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; font: 13px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; background: #0b0f14; color: #d8e2ec; }
+  #app { display: flex; height: 100vh; }
+  #view { flex: 1; min-width: 0; }
+  #panel { width: 340px; padding: 16px; box-sizing: border-box; border-left: 1px solid #1d2836; overflow: auto; }
+  h1 { font-size: 15px; margin: 0 0 4px; letter-spacing: .3px; }
+  .sub { color: #7f8fa1; margin-bottom: 14px; }
+  .row { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px dotted #1d2836; }
+  .ok { color: #5be49b; } .bad { color: #ff7b72; }
+  .k { color: #8fa3b8; }
+  button { background: #15202c; color: #cfe0ef; border: 1px solid #27384a; padding: 6px 9px; border-radius: 5px; cursor: pointer; }
+  button.on { background: #1f6feb; border-color: #1f6feb; color: #fff; }
+  input[type=range] { width: 100%; }
+  #hint { margin-top: 14px; padding: 10px; border: 1px solid #1d2836; border-radius: 6px; color: #93a7bb; }
+  .mono { color: #c9d8e8; word-break: break-all; }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<div id="app">
+  <div id="view"></div>
+  <aside id="panel">
+    <h1>glb-bake-lab</h1>
+    <div class="sub">nested scene graph → one world-space mesh</div>
+    <div class="row"><span class="k">draw calls (source)</span><span id="d-in" class="mono">…</span></div>
+    <div class="row"><span class="k">draw calls (baked)</span><span id="d-out" class="mono">…</span></div>
+    <div class="row"><span class="k">triangles</span><span id="tris" class="mono">…</span></div>
+    <div class="row"><span class="k">vertices</span><span id="verts" class="mono">…</span></div>
+    <div class="row"><span class="k">node bake sha256</span><span id="sha-node" class="mono">…</span></div>
+    <div class="row"><span class="k">browser bake sha256</span><span id="sha-browser" class="mono">…</span></div>
+    <div class="row"><span class="k">identical bytes</span><span id="sha-ok" class="mono">…</span></div>
+    <div style="margin-top:14px">
+      <button id="show-baked" class="on">baked (1 draw)</button>
+      <button id="show-source">source (24 nodes)</button>
+    </div>
+    <div style="margin-top:14px">
+      <div class="k">explode source parts <span id="ex-val">0.0</span></div>
+      <input id="explode" type="range" min="0" max="1" step="0.01" value="0">
+    </div>
+    <div id="hint">
+      Both files are parsed in the browser by the same <b>src/core.mjs</b> that
+      <b>bench/verify.mjs</b> runs in node. The browser re-bakes the source and
+      hashes the bytes; the SHA shown here must equal
+      <b>bench/result.json</b>'s sibling <b>data/manifest.json</b>. Exploding only
+      moves source nodes — the baked mesh has no per-node handles left.
+    </div>
+  </aside>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

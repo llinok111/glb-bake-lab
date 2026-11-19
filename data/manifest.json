@@ -1,0 +1,45 @@
+{
+  "generator": "tools/gen-sample.mjs",
+  "source": {
+    "bytes": 4356,
+    "sha256": "bec1cad638fd59be509f3011559bb36b05c39fbbb59900ab3975c61d2af64238"
+  },
+  "baked": {
+    "bytes": 18228,
+    "sha256": "31f8dd3fd6e754fbd72b2d2641b7408f49ffe2aa642318a0a41cdbdc56fb417b"
+  },
+  "input": {
+    "instances": 24,
+    "drawCalls": 24,
+    "triangles": 288,
+    "vertices": 576
+  },
+  "output": {
+    "instances": 1,
+    "drawCalls": 1,
+    "triangles": 288,
+    "vertices": 576
+  },
+  "bake": {
+    "instances": 24,
+    "inputDrawCalls": 24,
+    "outputDrawCalls": 1,
+    "inputTriangles": 288,
+    "triangles": 288,
+    "vertices": 576,
+    "materials": 1
+  },
+  "bounds": {
+    "min": [
+      -1.875,
+      -0.75,
+      -2.25
+    ],
+    "max": [
+      0.75,
+      2.75,
+      -0.75
+    ]
+  },
+  "boundsEqual": true
+}
