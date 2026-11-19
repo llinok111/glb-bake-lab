@@ -8,4 +8,6 @@ __pycache__/
 *.tgz
 *.7z
 .DS_Store
-state/.model-patch.yml
+state/
+.model-patch.yml
+
